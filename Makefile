@@ -1,7 +1,7 @@
 NAME = philosophers
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -pthread
 RM = rm -f
 
 SRCDIR = src
