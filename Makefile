@@ -21,8 +21,7 @@ all: $(NAME)
 # Compilation de l'exécutable final
 
 $(NAME): $(OBJS)
-    @$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-	&& echo $(SUCCESS) || echo $(FAILURE)
+    @$(CC) $(CFLAGS) $(OBJS) -o $(NAME) && echo $(SUCCESS) || echo $(FAILURE)
 
 # Compilation des fichiers objets
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
