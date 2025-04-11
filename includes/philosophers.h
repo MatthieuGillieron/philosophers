@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/11 14:33:27 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/11 15:20:55 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,28 @@
 #include <pthread.h>    
 
 
-struct  s_philo
-{
-        int     id;
-        long    meals_counter;
-        bool    full;
-        long    last_meal;
+typedef pthread_mutex_t pt_mtx;
 
-}
+typedef struct  s_fork
+{
+        pt_mtx  fork;
+        int     id_fork;    
+}               t_fork;
+
+
+
+typedef struct  s_philo
+{
+        int             philo;
+        long            meals_counter;
+        bool            full;
+        long            last_meal;
+        t_fork          *left_fork;
+        t_fork          *rigth_fork;
+        pthread_t       thread_id;
+
+        
+}               t_philo;
 
 
 
