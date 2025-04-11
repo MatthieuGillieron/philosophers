@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/11 15:20:55 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/11 15:57:59 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,15 @@
 #include <sys/time.h>   
 #include <pthread.h>    
 
+/*
+----------------------------------------------------------------------
+    Déclaration anticipée des structures (forward declaration)
+    Nécessaire quand deux structures se font référence mutuellement
+----------------------------------------------------------------------
+*/
 
 typedef pthread_mutex_t pt_mtx;
+typedef struct s_table  t_table;
 
 typedef struct  s_fork
 {
@@ -70,10 +77,23 @@ typedef struct  s_philo
         t_fork          *left_fork;
         t_fork          *rigth_fork;
         pthread_t       thread_id;
+        t_table         
 
         
 }               t_philo;
 
+struct  s_table
+{
+        long    philo_nbr;
+        long    time_to_die;
+        long    time_to_sleep;
+        long    time_to_eat;
+        long    limit_meals;
+        long    start;
+        bool    end;
+        t_fork  *forks;
+        t_philo *philos;
+};
 
 
 
