@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/10 15:51:25 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/11 14:33:27 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@
 /*
 -----------------------------------------------------------------------
 	        afficher du texte en couleur :
-		printf(R "Ceci est un texte rouge." RST);
-		printf(B "1er param choix couleur, dernier pour reset" RST);
+		printf(GREEN "Ceci est un texte vert." RST);
+		printf(BLUE "1er -> color, dernier -> reset" RST);
+
+                         Example : 
+        int valeur = 42;
+        printf("La valeur est : " RED "%d" RST "\n", valeur);
 -----------------------------------------------------------------------
 */
 
@@ -38,6 +42,7 @@
 -----------------------------------------------------------------------
 
 */
+
 #include <stdio.h>      
 #include <stdlib.h>     
 #include <string.h>     
@@ -46,9 +51,14 @@
 #include <pthread.h>    
 
 
+struct  s_philo
+{
+        int     id;
+        long    meals_counter;
+        bool    full;
+        long    last_meal;
 
-
-
+}
 
 
 
