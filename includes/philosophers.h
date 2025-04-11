@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/11 15:57:59 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/11 15:59:30 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct  s_philo
         t_fork          *left_fork;
         t_fork          *rigth_fork;
         pthread_t       thread_id;
-        t_table         
+        t_table         *table;      
 
         
 }               t_philo;
