@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/11 15:59:30 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/12 19:13:00 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 /*
 -----------------------------------------------------------------------
 	        afficher du texte en couleur :
-		printf(GREEN "Ceci est un texte vert." RST);
-		printf(BLUE "1er -> color, dernier -> reset" RST);
+	printf(GREEN "Ceci est un texte vert." RST);
+	printf(BLUE "1er -> color, dernier -> reset" RST);
 
                          Example : 
         int valeur = 42;
@@ -38,7 +38,8 @@
 -----------------------------------------------------------------------
                 Bibliothe pour :    
             printf, malloc/free, memset,
-            write/uslepp, gettimeofday, ft_thread
+            write/uslepp, gettimeofday,
+            ft_thread, bool
 -----------------------------------------------------------------------
 
 */
@@ -48,7 +49,8 @@
 #include <string.h>     
 #include <unistd.h>     
 #include <sys/time.h>   
-#include <pthread.h>    
+#include <pthread.h>
+#include <stdbool.h>
 
 /*
 ----------------------------------------------------------------------
@@ -82,6 +84,8 @@ typedef struct  s_philo
         
 }               t_philo;
 
+
+
 struct  s_table
 {
         long    philo_nbr;
@@ -96,7 +100,13 @@ struct  s_table
 };
 
 
+/*
+-------------------------------------------
+                prototypes
+-------------------------------------------
+*/
 
+void    exit_error(const char *error);
 
 
 
