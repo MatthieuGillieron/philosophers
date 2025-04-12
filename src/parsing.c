@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 19:28:39 by mg                #+#    #+#             */
-/*   Updated: 2025/04/12 23:10:39 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/12 23:58:20 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,32 @@
 static const char   *valid_input(const char *str)
 {
     int         len;
-    int         i;
     const char  *nbr;
 
     len = 0;
-    i = 0;
-    while (str)
-    {
-        if (str[i] >= 9 && str[i] <= 13 || str[i] == 32)
-            i++;
-        if (str[i] == '+')
-            i++;
-        else if (str[i] == '-')
+    if (!str || !*str)
+        exit_error(RED"Empty input"RST);
+
+    while (*str == ' ' || (*str >= 9 && *str <= 13))
+        str++;
+
+        if (*str == '+')
+            str++;
+        else if (*str == '-')
             exit_error(RED"Only positive value.."RST);
-        if (!str[i] >= 0 && !str[i] <= 9)
+
+        if (!is_digit(*str))
             exit_error(RED"The input need to be a digit.."RST);
-    }
+
+        nbr = str;
+        while (is_digit(*str))
+        {
+            len++;
+            str++;
+        }
+        if (len > 10)
+            exit_error(RED"Value is too big.."RST);
+        return nbr;
 }
 
 
