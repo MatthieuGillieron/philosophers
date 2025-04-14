@@ -6,8 +6,14 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 10:03:45 by mg                #+#    #+#             */
-/*   Updated: 2025/04/14 10:05:21 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/14 10:29:21 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+void    data_init(t_table *table)
+{
+    table->end = false;
+    table->philos = safe_malloc(table->philo_nbr);
+}
