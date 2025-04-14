@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 19:28:39 by mg                #+#    #+#             */
-/*   Updated: 2025/04/14 09:24:08 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/14 09:54:08 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,32 @@ static long ft_atol(const char *str)
 
 
 /*
-        1e3 -> 1000 "notation scientifique pour dire 1 est 3 zero.."
+    input : ./philo 5 800 200 200 [5]
+                    ms   ms  ms
+                    
+       seconde      1s
+       miliseconde  1/1000s
+       microseconde 1/1,000,000s
+
+        1e3 -> 1000 "notation scientifique pour dire 1 est 3 zero.." 
+        6e4-> 60000 -> Micro -> 60 -> ms 
+                          
+        time_to_... sont donner en MS et usleep est en microseconde
+        donc convertir
+        usleep(800)-> 0.8ms
 */
 
 void    parse_input(t_table *table, char **av)
 {
     table->philo_nbr = ft_atol(av[1]);
     table->time_to_die = ft_atol(av[2]) * 1e3;
-    table->time_to_die = ft_atol(av[2]) * 1e3;
-    table->time_to_die = ft_atol(av[2]) * 1e3;
-    table->time_to_die = ft_atol(av[2]) * 1e3;
-    
+    table->time_to_eat = ft_atol(av[3]) * 1e3;
+    table->time_to_sleep = ft_atol(av[4]) * 1e3;
+    if (table->time_to_die < 6e4 || table->time_to_eat < 6e4
+        || table->time_to_sleep < 6e4)
+        exit_error(RED"Need timestamps >= 60MS..."RST);
+    if (av[5])
+        table->limit_meals = ft_atol(av[5]);
+    else
+        table->limit_meals = -1;    
 }
