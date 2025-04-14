@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 19:28:39 by mg                #+#    #+#             */
-/*   Updated: 2025/04/12 23:58:20 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/14 09:24:08 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,24 @@ static long ft_atol(const char *str)
 
     nbr = 0;
     str = valid_input(nbr);
+    while (is_digit(*str))
+        nbr = (nbr * 10) + (*str++ - '0');
+    if (nbr > INT_MAX)
+        exit_error(RED"Value is too big.."RST);
+    return (nbr);
 }
 
+
+/*
+        1e3 -> 1000 "notation scientifique pour dire 1 est 3 zero.."
+*/
 
 void    parse_input(t_table *table, char **av)
 {
     table->philo_nbr = ft_atol(av[1]);
+    table->time_to_die = ft_atol(av[2]) * 1e3;
+    table->time_to_die = ft_atol(av[2]) * 1e3;
+    table->time_to_die = ft_atol(av[2]) * 1e3;
+    table->time_to_die = ft_atol(av[2]) * 1e3;
+    
 }
