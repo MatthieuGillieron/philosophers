@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:23:08 by mg                #+#    #+#             */
-/*   Updated: 2025/04/14 13:38:31 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/14 14:01:25 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ void    *safe_malloc(size_t bytes)
     return (retrn);
 }
 
+
+/*
+    EINVAL  :	Invalid argument        ->	Tu as passé un argument invalide à une fonction. Ex: mutex pas init.
+    EDEADLK :	Deadlock detected       ->	Tu es en train de créer un deadlock (genre tu relock un mutex que tu tiens déjà).
+    EPERM   :	Operation not permitted ->	T’essaies de faire une opération pour laquelle tu n’as pas le droit (ex: unlock un mutex que tu n’as pas locké).
+    ENOMEM  :	Not enough memory       ->	Plus assez de mémoire pour faire ce que tu veux (ex: créer un mutex).
+    EBUSY   :	Resource busy           ->	Ressource occupée. Par exemple : mutex encore locké, donc tu peux pas le détruire.
+*/
+
 static void handle_mtx_error(int status, t_opcode opcode)
 {
     if (0 == status)
@@ -55,13 +64,13 @@ static void handle_mtx_error(int status, t_opcode opcode)
 void    safe_mutex_handle(t_mtx *mutex, t_opcode opcode)
 {
     if (LOCK == opcode)
-        pthread_mutex_lock(mutex);
+        handle_mtx_error(pthread_mutex_lock(mutex), opcode);
     else if (UNLOCK == opcode)
-        pthread_mutex_unlock(mutex);
+        handle_mtx_error(pthread_mutex_unlock(mutex), opcode);
     else if (INIT == opcode)
-        pthread_mutex_init(mutex, NULL);
+        handle_mtx_error(pthread_mutex_init(mutex, NULL), opcode);
     else if (DESTROY == opcode)
-        pthread_mutex_destroy(mutex);
+        handle_mtx_error(pthread_mutex_destroy(mutex), opcode);
     else
         exit_error(RED"Wrong opcode for mutex.."RST);
 }
