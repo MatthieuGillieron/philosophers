@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/12 23:46:47 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/14 13:24:24 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,29 @@
 # define WHITE		"\033[1;37m"	
 
 /*
+        OPcode pour mutex | chaque instructuion a un opcode qui la  represente
+*/
+
+typedef enum    e_opcode
+{
+        LOCK,
+        UNLOCK,
+        INIT,
+        DESTROY,
+        CREATE,
+        JOIN,
+        DETACH,
+}               t_opcode;
+
+
+
+/*
 -----------------------------------------------------------------------
                 Bibliothe pour :    
             printf, malloc/free, memset,
             write/uslepp, gettimeofday,
             ft_thread, bool
 -----------------------------------------------------------------------
-
 */
 
 #include <stdio.h>      
@@ -51,6 +67,9 @@
 #include <sys/time.h>   
 #include <pthread.h>
 #include <stdbool.h>
+#include <limits.h>
+#include <errno.h>
+
 
 /*
 ----------------------------------------------------------------------
@@ -59,12 +78,12 @@
 ----------------------------------------------------------------------
 */
 
-typedef pthread_mutex_t pt_mtx;
+typedef pthread_mutex_t t_mtx;
 typedef struct s_table  t_table;
 
 typedef struct  s_fork
 {
-        pt_mtx  fork;
+        t_mtx  fork;
         int     id_fork;    
 }               t_fork;
 
@@ -106,8 +125,16 @@ struct  s_table
 -------------------------------------------
 */
 
+
+//      *** UTILS ***
 void    exit_error(const char *error);
-inline bool is_digit(char c);
+inline  bool is_digit(char c);
+void    *safe_malloc(size_t bytes);
+
+
+//      *** PARSING ***
+void    parse_input(t_table *table, char **av);
+
 
 
 
