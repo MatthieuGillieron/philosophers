@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 10:03:45 by mg                #+#    #+#             */
-/*   Updated: 2025/04/15 13:05:37 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/15 13:17:19 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,14 @@ static void assign_fork(t_philo *philo, t_fork *forks, int philo_pos)
     int philo_nbr;
     
     philo_nbr = philo->table->philo_nbr;
-
-    philo->rigth_fork = &forks[philo_pos];
-    philo->left_fork = &forks[(philo_pos + 1) % philo_nbr];
+    
+    philo->second_fork = &forks[(philo_pos + 1) % philo_nbr];
+    philo->first_fork = &forks[philo_pos];
+    if (philo->id % 2 == 0)
+    {
+        philo->first_fork = &forks[philo_pos];
+        philo->second_fork = &forks[(philo_pos + 1) % philo_nbr];
+    }
 }
 
 static  philo_init(t_table *table)

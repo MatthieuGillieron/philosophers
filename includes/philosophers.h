@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/15 13:13:07 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/15 13:19:19 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,8 @@ void    safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, 
 void    parse_input(t_table *table, char **av);
 
 
-
+//      *** INIT ***
+void    data_init(t_table *table);
 
 
 
