@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/14 16:31:26 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/15 13:13:07 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ typedef struct  s_philo
         long            meals_counter;
         bool            full;
         long            last_meal;
-        t_fork          *left_fork;
-        t_fork          *rigth_fork;
+        t_fork          *first_fork; // left
+        t_fork          *second_fork; // rigth
         pthread_t       thread_id;
         t_table         *table;      
 
