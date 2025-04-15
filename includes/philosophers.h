@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/15 13:54:57 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/15 14:53:35 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,16 @@ void    parse_input(t_table *table, char **av);
 
 //      *** INIT ***
 void    data_init(t_table *table);
+
+
+//      *** SETTER_GETTER ***
+bool    sim_finish(t_table *table);
+long    get_long(t_mtx *mutex, long *value);
+void    set_long(t_mtx *mutex, long *dest, long value);
+bool    get_bool(t_mtx *mutex, bool *value);
+void    set_bool(t_mtx *mutex, bool *dest, bool value);
+
+
 
 
 
