@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/15 13:52:35 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/15 13:54:57 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ void    exit_error(const char *error);
 inline  bool is_digit(char c);
 void    *safe_malloc(size_t bytes);
 void    safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_opcode opcode);
+void    safe_mutex_handle(t_mtx *mutex, t_opcode opcode);
 
 
 
