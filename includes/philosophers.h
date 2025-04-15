@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/15 15:10:40 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/15 16:04:22 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ inline  bool is_digit(char c);
 void    *safe_malloc(size_t bytes);
 void    safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_opcode opcode);
 void    safe_mutex_handle(t_mtx *mutex, t_opcode opcode);
+long    get_time(t_time_code time_code);
 
 
 //      *** SYNCHRO ***
