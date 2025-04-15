@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/15 13:19:19 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/15 13:46:13 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ struct  s_table
         long    limit_meals;
         long    start;
         bool    end;
+        bool    all_thread;
         t_fork  *forks;
         t_philo *philos;
 };
