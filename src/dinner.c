@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:20:49 by mg                #+#    #+#             */
-/*   Updated: 2025/04/15 13:52:05 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/16 14:35:10 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,23 @@ void    *dinner_simu(void *data)
     philo = (t_philo *)data;
 
     wait_thread(philo->table);
+
+    while (!sim_finish(philo->table))
+    {
+        if (philo->full)
+            break;
+        
+        eat(philo);
+
+        // sleep
+        write_status(SLEEPING, philo, DEBUG_MODE);
+        better_usleep(philo->table->time_to_sleep, philo->table);
+
+        // think
+        
+
+    }
+    return (NULL);
 }
 
 
@@ -55,5 +72,13 @@ void    dinner_start(t_table *table)
             safe_thread_handle(table->philos[i].thread_id, dinner_simu,
                 &table->philos[i], CREATE);
     }
+    table->start = get_time(MILLISECOND);
+
+    set_bool(&table->table_mtx, &table->all_thread, true);
+
+    //wait for all
+    i = -1;
+    while (++i < table->philo_nbr)
+        safe_thread_handle(&table->philos[i].thread_id, NULL, NULL, JOIN);
     
 }
