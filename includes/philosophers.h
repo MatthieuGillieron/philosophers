@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/15 16:04:22 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/16 11:28:54 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,20 @@ typedef enum e_time_code
         MICROSECOND,
 
 }               t_time_code;
+
+/*
+        philo state
+*/
+
+typedef enum e_status
+{
+        EATING,
+        SLEEPING,
+        THINKING,
+        TAKE_FIRST_WORK,
+        TAKE_SECOND_FORK,
+        DIED,
+}               t_philo_status;
 
 /*
 -----------------------------------------------------------------------
@@ -127,6 +141,7 @@ struct  s_table
         bool    end;
         bool    all_thread;
         t_mtx   table_mtx;
+        t_mtx   write_mtx;
         t_fork  *forks;
         t_philo *philos;
 };
@@ -150,6 +165,8 @@ long    get_time(t_time_code time_code);
 
 //      *** SYNCHRO ***
 void    wait_thread(t_table *table);
+void    better_usleep(long usec, t_table *table);
+
 
 
 //      *** PARSING ***
