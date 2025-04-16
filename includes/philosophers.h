@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/16 11:28:54 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/16 14:32:57 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@
 # define CYAN		"\033[1;36m"	
 # define WHITE		"\033[1;37m"	
 
+/*
+        write_debug ft
+*/
+#define DEBUG_MODE 0
 /*
         OPcode pour mutex | chaque instructuion a un opcode qui la  represente
 */
@@ -183,6 +187,10 @@ long    get_long(t_mtx *mutex, long *value);
 void    set_long(t_mtx *mutex, long *dest, long value);
 bool    get_bool(t_mtx *mutex, bool *value);
 void    set_bool(t_mtx *mutex, bool *dest, bool value);
+
+//       *** WRITE ***
+void    write_status(t_philo_status status, t_philo *philo, bool debug);
+
 
 
 
