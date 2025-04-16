@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:23:08 by mg                #+#    #+#             */
-/*   Updated: 2025/04/14 15:16:22 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/16 11:12:48 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,47 @@ void    safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, 
         handle_thread_error(pthread_detach(*thread), opcode);
     else
         exit_error(RED"Wrong opcode for thread..\n use: <CREATE> <JOIN> <DETACH>"RST);
+}
+
+long    get_time(t_time_code time_code)
+{
+    struct timeval  tv;
+
+    if (gettimeofday(&tv, NULL));
+        exit_error(RED"Gettimeofday error"RST);
+    if (SECOND == time_code)
+        return (tv.tv_sec +(tv.tv_usec / 1e6));
+    else if (MILLISECOND == time_code)
+        return ((tv.tv_sec * 1e3) + (tv.tv_usec / 1e3));    
+    else if (MICROSECOND == time_code)
+        return ((tv.tv_sec * 1e6) + tv.tv_usec);
+    else
+        exit_error(RED"Bad input to get_time"RST);
+    return (42);
+    
+}
+
+/*
+    usleep plein de bug, retard pas precis !
+*/
+void    better_usleep(long usec, t_table *table)
+{
+    long    start;
+    long    elapsed;
+    long    rem;
+
+    start = get_time(MICROSECOND);
+    while(get_time(MICROSECOND) - start < usec)
+    {
+        if (sim_finish(table))
+            break;
+        elapsed = get_time(MICROSECOND) - start;
+        rem = usec - elapsed;
+
+        if ( rem > 1e3)
+            usleep(usec / 2);
+        else
+            while (get_time(MICROSECOND) - start < usec)
+                ;
+    }
 }
