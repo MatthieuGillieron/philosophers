@@ -6,13 +6,38 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:20:49 by mg                #+#    #+#             */
-/*   Updated: 2025/04/16 14:35:10 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/17 11:49:54 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
+/*
+    1: Prendre prend fourchette est lock
+    2: eat, update dernier repas, update le counter | philo is full ?
+    3: reposer les fourchettes
+*/
 
+
+static void eat(t_philo *philo)
+{
+    safe_mutex_handle(&philo->first_fork->fork, LOCK);
+    write_status(TAKE_FIRST_WORK, philo, DEBUG_MODE);
+    safe_mutex_handle(&philo->second_fork->fork, LOCK);
+    write_status(TAKE_SECOND_FORK, philo, DEBUG_MODE);
+
+    set_long(&philo->philo_mtx, &philo->last_meal, get_time(MILLISECOND));
+    philo->meals_counter++;
+    write_status(EATING, philo, DEBUG_MODE);
+    better_usleep(philo->table->time_to_eat, philo->table);
+    if (philo->table->limit_meals > 0
+        && philo->meals_counter == philo->table->limit_meals)
+        set_bool(&philo->philo_mtx, &philo->full, true);
+
+        safe_mutex_handle(&philo->first_fork->fork, UNLOCK);
+        safe_mutex_handle(&philo->second_fork->fork, UNLOCK);
+
+}
 
 
 
