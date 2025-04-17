@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 10:03:45 by mg                #+#    #+#             */
-/*   Updated: 2025/04/16 11:26:33 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/17 12:09:45 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void assign_fork(t_philo *philo, t_fork *forks, int philo_pos)
     }
 }
 
-static  philo_init(t_table *table)
+static void  philo_init(t_table *table)
 {
     int     i;
     t_philo *philo;
@@ -52,9 +52,10 @@ static  philo_init(t_table *table)
         philo->full = false;
         philo->meals_counter = 0;
         philo->table = table;
+        safe_mutex_handle(&philo->philo_mtx, INIT);
+
     }
 }
-
 
 
 

@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:23:08 by mg                #+#    #+#             */
-/*   Updated: 2025/04/16 11:12:48 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/17 12:32:54 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void    exit_error(const char *error)
 {
-    printf(RED"%s \n",RST, error);
+    printf(RED"%s \n"RST, error);
     exit(EXIT_FAILURE);
 }
 
-inline bool is_digit(char c)
+bool is_digit(char c)
 {
     return (c >= '0' && c <= 9);
 }
@@ -99,7 +99,7 @@ void    safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, 
     if (CREATE == opcode)
         handle_thread_error(pthread_create(thread, NULL, foo, data), opcode);
     else if (JOIN == opcode)
-        handle_thread_error(pthread_join(thread, NULL), opcode);
+        handle_thread_error(pthread_join(*thread, NULL), opcode);
     else if (DETACH == opcode)
         handle_thread_error(pthread_detach(*thread), opcode);
     else
@@ -110,7 +110,7 @@ long    get_time(t_time_code time_code)
 {
     struct timeval  tv;
 
-    if (gettimeofday(&tv, NULL));
+    if (gettimeofday(&tv, NULL))
         exit_error(RED"Gettimeofday error"RST);
     if (SECOND == time_code)
         return (tv.tv_sec +(tv.tv_usec / 1e6));

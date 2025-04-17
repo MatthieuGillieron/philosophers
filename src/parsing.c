@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 19:28:39 by mg                #+#    #+#             */
-/*   Updated: 2025/04/14 09:54:08 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/17 12:08:17 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,14 @@ static long ft_atol(const char *str)
     long    nbr;
 
     nbr = 0;
-    str = valid_input(nbr);
+    str = valid_input(str);
     while (is_digit(*str))
         nbr = (nbr * 10) + (*str++ - '0');
     if (nbr > INT_MAX)
         exit_error(RED"Value is too big.."RST);
     return (nbr);
 }
+
 
 
 /*

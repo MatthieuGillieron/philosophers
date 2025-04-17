@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:20:49 by mg                #+#    #+#             */
-/*   Updated: 2025/04/17 11:49:54 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/17 11:58:23 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
     2: eat, update dernier repas, update le counter | philo is full ?
     3: reposer les fourchettes
 */
+
+
+static void thinking(t_philo *philo)
+{
+    write(THINKING, philo, DEBUG_MODE);
+}
 
 
 static void eat(t_philo *philo)
@@ -94,7 +100,7 @@ void    dinner_start(t_table *table)
     {
 
         while(++i < table->philo_nbr)
-            safe_thread_handle(table->philos[i].thread_id, dinner_simu,
+            safe_thread_handle(&table->philos[i].thread_id, dinner_simu,
                 &table->philos[i], CREATE);
     }
     table->start = get_time(MILLISECOND);
