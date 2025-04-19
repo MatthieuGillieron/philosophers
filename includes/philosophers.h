@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/19 19:52:03 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/19 21:00:07 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ struct  s_table
         long    start;
         bool    end;
         bool    all_thread;
+        long    thread_running_nbr;
         pthread_t       monitor;
         t_mtx   table_mtx;
         t_mtx   write_mtx;
@@ -172,6 +173,7 @@ long    get_time(t_time_code time_code);
 //      *** SYNCHRO ***
 void    wait_thread(t_table *table);
 void    better_usleep(long usec, t_table *table);
+bool    all_thread_running(t_mtx *mutex, long *threads, long philo_nbr);
 
 
 
