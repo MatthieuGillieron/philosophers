@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/19 21:00:07 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/19 23:08:03 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 /*
         write_debug ft
 */
-#define DEBUG_MODE 1
+#define DEBUG_MODE 0
 /*
         OPcode pour mutex | chaque instructuion a un opcode qui la  represente
 */
@@ -168,12 +168,14 @@ void    *safe_malloc(size_t bytes);
 void    safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_opcode opcode);
 void    safe_mutex_handle(t_mtx *mutex, t_opcode opcode);
 long    get_time(t_time_code time_code);
+void    clean(t_table *table);
 
 
 //      *** SYNCHRO ***
 void    wait_thread(t_table *table);
 void    better_usleep(long usec, t_table *table);
-bool    all_thread_running(t_mtx *mutex, long *threads, long philo_nbr);
+bool    all_thread_run(t_mtx *mutex, long *threads, long philo_nbr);
+void increase_long(t_mtx *mutex, long *value);
 
 
 
@@ -197,6 +199,9 @@ void    write_status(t_philo_status status, t_philo *philo, bool debug);
 
 //       *** DINNER ***
 void    dinner_start(t_table *table);
+
+//      *** MONITOR ***
+void    *monitor_dinner(void *data);
 
 
 

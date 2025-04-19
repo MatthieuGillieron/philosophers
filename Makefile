@@ -31,7 +31,6 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 $(OBJDIR):
     @mkdir -p $@
 
- # Si le dossier n'est pas vide ou n'existe pas, la commande échoue silencieusement
  # grâce à 2>/dev/null (qui redirige les erreurs vers null) et || true (qui empêche l'arrêt du script en cas d'erreur).
 clean:
     @$(RM) $(OBJS)
