@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:23:08 by mg                #+#    #+#             */
-/*   Updated: 2025/04/19 22:39:48 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/19 23:06:27 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void    better_usleep(long usec, t_table *table)
         rem = usec - elapsed;
 
         if ( rem > 1e3)
-            usleep(usec / 2);
+            usleep(rem / 2);
         else
             while (get_time(MICROSECOND) - start < usec)
                 ;

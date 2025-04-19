@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:20:49 by mg                #+#    #+#             */
-/*   Updated: 2025/04/19 22:06:22 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/19 22:51:01 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,5 +133,9 @@ void    dinner_start(t_table *table)
     i = -1;
     while (++i < table->philo_nbr)
         safe_thread_handle(&table->philos[i].thread_id, NULL, NULL, JOIN);
+    
+        set_bool(&table->table_mtx, &table->end, true);
+
+        safe_thread_handle(&table->monitor, NULL, NULL, JOIN);
     
 }
