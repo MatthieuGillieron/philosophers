@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/17 11:30:26 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/19 19:52:03 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 /*
         write_debug ft
 */
-#define DEBUG_MODE 0
+#define DEBUG_MODE 1
 /*
         OPcode pour mutex | chaque instructuion a un opcode qui la  represente
 */
@@ -145,6 +145,7 @@ struct  s_table
         long    start;
         bool    end;
         bool    all_thread;
+        pthread_t       monitor;
         t_mtx   table_mtx;
         t_mtx   write_mtx;
         t_fork  *forks;
@@ -161,7 +162,7 @@ struct  s_table
 
 //      *** UTILS ***
 void    exit_error(const char *error);
-inline  bool is_digit(char c);
+bool    is_digit(char c);
 void    *safe_malloc(size_t bytes);
 void    safe_thread_handle(pthread_t *thread, void *(*foo)(void *), void *data, t_opcode opcode);
 void    safe_mutex_handle(t_mtx *mutex, t_opcode opcode);
@@ -192,7 +193,8 @@ void    set_bool(t_mtx *mutex, bool *dest, bool value);
 //       *** WRITE ***
 void    write_status(t_philo_status status, t_philo *philo, bool debug);
 
-
+//       *** DINNER ***
+void    dinner_start(t_table *table);
 
 
 
