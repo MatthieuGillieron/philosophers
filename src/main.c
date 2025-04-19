@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:23:12 by mg                #+#    #+#             */
-/*   Updated: 2025/04/17 13:54:03 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/19 22:58:44 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,16 @@ int main(int ac, char **av)
     if (ac == 5 || ac == 6)
     {
             parse_input(&table, av);
+            printf("philo_nbr: %ld\n", table.philo_nbr);
+
+            printf("time_to_die: %ld\n", table.time_to_die);
+            printf("time_to_eat: %ld\n", table.time_to_eat);
+            printf("time_to_sleep: %ld\n", table.time_to_sleep);
+            printf("limit_meals: %ld\n", table.limit_meals);
+
 	    	data_init(&table);
+            dinner_start(&table);
+            clean(&table);
     }
     else
     {
