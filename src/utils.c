@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:23:08 by mg                #+#    #+#             */
-/*   Updated: 2025/04/17 12:40:20 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/19 22:39:48 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,4 +147,21 @@ void    better_usleep(long usec, t_table *table)
             while (get_time(MICROSECOND) - start < usec)
                 ;
     }
+}
+
+void    clean(t_table *table)
+{
+    t_philo *philo;
+    int     i;
+
+    i = -1;
+    while (++i < table->philo_nbr)
+    {
+        philo = table->philos + i;
+        safe_mutex_handle(&philo->philo_mtx, DESTROY);
+    }
+    safe_mutex_handle(&table->write_mtx, DESTROY);
+    safe_mutex_handle(&table->table_mtx, DESTROY);
+    free(table->forks);
+    free(table->philos);
 }
