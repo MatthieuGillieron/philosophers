@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:23:08 by mg                #+#    #+#             */
-/*   Updated: 2025/04/17 12:32:54 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/17 12:40:20 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    exit_error(const char *error)
 
 bool is_digit(char c)
 {
-    return (c >= '0' && c <= 9);
+    return (c >= '0' && c <= '9');
 }
 
 void    *safe_malloc(size_t bytes)

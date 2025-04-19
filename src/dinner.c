@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:20:49 by mg                #+#    #+#             */
-/*   Updated: 2025/04/17 11:58:23 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/17 13:52:41 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ static void eat(t_philo *philo)
     if (philo->table->limit_meals > 0
         && philo->meals_counter == philo->table->limit_meals)
         set_bool(&philo->philo_mtx, &philo->full, true);
-
-        safe_mutex_handle(&philo->first_fork->fork, UNLOCK);
-        safe_mutex_handle(&philo->second_fork->fork, UNLOCK);
+    safe_mutex_handle(&philo->first_fork->fork, UNLOCK);
+    safe_mutex_handle(&philo->second_fork->fork, UNLOCK);
 
 }
 
@@ -68,7 +67,7 @@ void    *dinner_simu(void *data)
         better_usleep(philo->table->time_to_sleep, philo->table);
 
         // think
-        
+        thinking(philo);
 
     }
     return (NULL);

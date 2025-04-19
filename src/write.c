@@ -6,14 +6,11 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 11:24:28 by mg                #+#    #+#             */
-/*   Updated: 2025/04/16 14:24:51 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/17 14:06:21 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-
-
-
 
 static void write_status_debug(t_philo_status status, t_philo *philo, long elapsed)
 {
@@ -45,15 +42,15 @@ static void write_status_debug(t_philo_status status, t_philo *philo, long elaps
 
 
 
-
 void    write_status(t_philo_status status, t_philo *philo, bool debug)
 {
-    long    elapsed;
 
-    elapsed = get_time(MILLISECOND);// - start
+    long    elapsed;
+   
+    elapsed = get_time(MILLISECOND) - philo->table->start;
     if (philo->full)
         return;
-
+    
     safe_mutex_handle(&philo->table->write_mtx, LOCK);
     if(debug)
         write_status_debug(status, philo, elapsed);
@@ -74,7 +71,5 @@ void    write_status(t_philo_status status, t_philo *philo, bool debug)
         else if (DIED == status)
             printf(RED"%-6ld %d is died\n"RST, elapsed, philo->id);
     }
-
-
        safe_mutex_handle(&philo->table->write_mtx, UNLOCK);
 }

@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 10:03:45 by mg                #+#    #+#             */
-/*   Updated: 2025/04/17 12:09:45 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/17 13:30:08 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static void  philo_init(t_table *table)
         philo->meals_counter = 0;
         philo->table = table;
         safe_mutex_handle(&philo->philo_mtx, INIT);
+
+        assign_fork(philo, table->forks, i);
 
     }
 }
