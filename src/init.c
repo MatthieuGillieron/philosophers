@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 10:03:45 by mg                #+#    #+#             */
-/*   Updated: 2025/04/19 20:54:14 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/19 23:01:17 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,5 @@ void    data_init(t_table *table)
         safe_mutex_handle(&table->forks[i].fork, INIT);
         table->forks[i].id_fork = i; // pour debug, savoir quel philo a quelle fourchetes
     }
+    philo_init(table);
 }
