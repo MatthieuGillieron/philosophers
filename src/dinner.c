@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:20:49 by mg                #+#    #+#             */
-/*   Updated: 2025/04/21 15:14:24 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/21 15:57:43 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void    thinking(t_philo *philo, bool pre_sim)
     long    time_think;
 
     if (!pre_sim)
-        write_status(THINKING, philo, DEBUG_MODE);
+        write_status(THINKING, philo);
     if (philo->table->philo_nbr % 2 == 0)
         return ;
     time_eat = philo->table->time_to_eat;
@@ -46,7 +46,7 @@ void    *lone_philo(void *arg)
     wait_thread(philo->table);
     set_long(&philo->philo_mtx, &philo->last_meal, get_time(MILLISECOND));
     increase_long(&philo->table->table_mtx, &philo->table->thread_running_nbr);
-    write_status(TAKE_FIRST_WORK, philo, DEBUG_MODE);
+    write_status(TAKE_FIRST_WORK, philo);
     while (!sim_finish(philo->table))
         usleep(200);
     return (NULL);
@@ -57,13 +57,13 @@ void    *lone_philo(void *arg)
 static void eat(t_philo *philo)
 {
     safe_mutex_handle(&philo->first_fork->fork, LOCK);
-    write_status(TAKE_FIRST_WORK, philo, DEBUG_MODE);
+    write_status(TAKE_FIRST_WORK, philo);
     safe_mutex_handle(&philo->second_fork->fork, LOCK);
-    write_status(TAKE_SECOND_FORK, philo, DEBUG_MODE);
+    write_status(TAKE_SECOND_FORK, philo);
 
     set_long(&philo->philo_mtx, &philo->last_meal, get_time(MILLISECOND));
     philo->meals_counter++;
-    write_status(EATING, philo, DEBUG_MODE);
+    write_status(EATING, philo);
     better_usleep(philo->table->time_to_eat, philo->table);
     if (philo->table->limit_meals > 0
         && philo->meals_counter == philo->table->limit_meals)
@@ -89,7 +89,7 @@ void    *dinner_simu(void *data)
     increase_long(&philo->table->table_mtx,
          &philo->table->thread_running_nbr);
 
-    desynchro_philos(philo);
+    desynchro_philo(philo);
   
 
     while (!sim_finish(philo->table))
@@ -100,7 +100,7 @@ void    *dinner_simu(void *data)
         eat(philo);
 
         // sleep
-        write_status(SLEEPING, philo, DEBUG_MODE);
+        write_status(SLEEPING, philo);
         better_usleep(philo->table->time_to_sleep, philo->table);
 
         // think

@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 19:54:18 by mg                #+#    #+#             */
-/*   Updated: 2025/04/19 22:02:42 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/21 15:56:13 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void    *monitor_dinner(void *data)
             if (philo_died(table->philos + i))
             {
                 set_bool(&table->table_mtx, &table->end, true);
-                write_status(DIED, table->philos + i, DEBUG_MODE);
+                write_status(DIED, table->philos + i);
             }
         }
     }
