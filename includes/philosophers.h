@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/21 15:12:24 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/21 15:57:45 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@
 # define CYAN		"\033[1;36m"	
 # define WHITE		"\033[1;37m"	
 
-/*
-        write_debug ft
-*/
-#define DEBUG_MODE 0
+
 /*
         OPcode pour mutex | chaque instructuion a un opcode qui la  represente
 */
@@ -176,6 +173,7 @@ void    wait_thread(t_table *table);
 void    better_usleep(long usec, t_table *table);
 bool    all_thread_run(t_mtx *mutex, long *threads, long philo_nbr);
 void increase_long(t_mtx *mutex, long *value);
+void    desynchro_philo(t_philo *philo);
 
 
 
@@ -195,7 +193,7 @@ bool    get_bool(t_mtx *mutex, bool *value);
 void    set_bool(t_mtx *mutex, bool *dest, bool value);
 
 //       *** WRITE ***
-void    write_status(t_philo_status status, t_philo *philo, bool debug);
+void    write_status(t_philo_status status, t_philo *philo);
 
 //       *** DINNER ***
 void    dinner_start(t_table *table);

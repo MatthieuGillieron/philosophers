@@ -8,10 +8,16 @@ SRCDIR = src
 OBJDIR = obj
 
 SRCS = main.c \
-        philosophers.c \
-        utils.c
+	dinner.c \
+	monitor.c \
+	init.c \
+	getter_setter.c \
+	utils.c \
+	parsing.c \
+	synchro.c \
+	write.c
 
-OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
+OBJS =  $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 
 SUCCESS = "\033[1;92m✅ Compilation réussie ! ✅\033[0m"
 FAILURE = "\033[1;91m❌ Erreur de compilation ! ❌\033[0m"
@@ -20,24 +26,24 @@ all: $(NAME)
 
 # Compilation de l'exécutable final
 
-$(NAME): $(OBJS)
-    @$(CC) $(CFLAGS) $(OBJS) -o $(NAME) && echo $(SUCCESS) || echo $(FAILURE)
+$(NAME): $(OBJS)  
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) && echo $(SUCCESS) || echo $(FAILURE)
 
 # Compilation des fichiers objets
 $(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
-    $(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Création du dossier obj
 $(OBJDIR):
-    @mkdir -p $@
+	@mkdir -p $@
 
  # grâce à 2>/dev/null (qui redirige les erreurs vers null) et || true (qui empêche l'arrêt du script en cas d'erreur).
 clean:
-    @$(RM) $(OBJS)
-    @rmdir $(OBJDIR) 2>/dev/null || true
+	@$(RM)  $(OBJS)
+	@rmdir  $(OBJDIR) 2>/dev/null || true
 
 fclean: clean
-    @$(RM) $(NAME)
+	@$(RM)  $(NAME)
 
 re: fclean all
 
