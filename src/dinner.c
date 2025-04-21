@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:20:49 by mg                #+#    #+#             */
-/*   Updated: 2025/04/21 14:23:24 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/21 15:14:24 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,22 @@
 */
 
 
-void thinking(t_philo *philo)
+void    thinking(t_philo *philo, bool pre_sim)
 {
-    write_status(THINKING, philo, DEBUG_MODE);
+    long    time_eat;
+    long    time_sleep;
+    long    time_think;
+
+    if (!pre_sim)
+        write_status(THINKING, philo, DEBUG_MODE);
     if (philo->table->philo_nbr % 2 == 0)
-        return ;     
+        return ;
+    time_eat = philo->table->time_to_eat;
+    time_sleep = philo->table->time_to_sleep;
+    time_think = time_eat * 2 - time_sleep;
+    if (time_think < 0)
+        time_think = 0;
+    better_usleep(time_think * 0.42, philo->table);
 }
 
 
@@ -93,7 +104,7 @@ void    *dinner_simu(void *data)
         better_usleep(philo->table->time_to_sleep, philo->table);
 
         // think
-        thinking(philo);
+        thinking(philo, false);
 
     }
     return (NULL);

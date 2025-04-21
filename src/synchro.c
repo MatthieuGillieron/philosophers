@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 14:56:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/21 14:19:44 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/21 15:13:22 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void    desynchro_philo(t_philo *philo)
     else
     {
         if (philo->id % 2)
-            thinking(philo);
+            thinking(philo, true);
     }
 }

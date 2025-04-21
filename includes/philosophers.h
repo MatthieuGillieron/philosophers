@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/21 14:19:18 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/21 15:12:24 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ void    dinner_start(t_table *table);
 
 //      *** MONITOR ***
 void    *monitor_dinner(void *data);
-void thinking(t_philo *philo);
+void thinking(t_philo *philo, bool pre_sim);
 
 
 
