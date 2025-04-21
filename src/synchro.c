@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 14:56:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/19 22:09:22 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/21 14:19:44 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,18 @@ void increase_long(t_mtx *mutex, long *value)
     safe_mutex_handle(mutex, LOCK);
     (*value)++;
     safe_mutex_handle(mutex, UNLOCK);
+}
+
+void    desynchro_philo(t_philo *philo)
+{
+    if (philo->table->philo_nbr % 2 == 0)
+    {
+        if (philo->id % 2 == 0)
+            better_usleep(3e4, philo->table);
+    }
+    else
+    {
+        if (philo->id % 2)
+            thinking(philo);
+    }
 }
