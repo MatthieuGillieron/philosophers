@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:20:49 by mg                #+#    #+#             */
-/*   Updated: 2025/04/19 22:51:01 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/21 14:23:24 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
 */
 
 
-static void thinking(t_philo *philo)
+void thinking(t_philo *philo)
 {
-    write(THINKING, philo, DEBUG_MODE);
+    write_status(THINKING, philo, DEBUG_MODE);
+    if (philo->table->philo_nbr % 2 == 0)
+        return ;     
 }
 
 
@@ -75,6 +77,9 @@ void    *dinner_simu(void *data)
 
     increase_long(&philo->table->table_mtx,
          &philo->table->thread_running_nbr);
+
+    desynchro_philos(philo);
+  
 
     while (!sim_finish(philo->table))
     {
