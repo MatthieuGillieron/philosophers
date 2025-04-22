@@ -6,45 +6,47 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 14:00:21 by mg                #+#    #+#             */
-/*   Updated: 2025/04/15 14:50:42 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/22 13:27:34 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void    set_bool(t_mtx *mutex, bool *dest, bool value)
+void	set_bool(t_mtx *mutex, bool *dest, bool value)
 {
-    safe_mutex_handle(mutex, LOCK);
-    *dest = value;
-    safe_mutex_handle(mutex, UNLOCK);
+	safe_mutex_handle(mutex, LOCK);
+	*dest = value;
+	safe_mutex_handle(mutex, UNLOCK);
 }
 
-bool    get_bool(t_mtx *mutex, bool *value)
+bool	get_bool(t_mtx *mutex, bool *value)
 {
-    bool    ret;
-    safe_mutex_handle(mutex, LOCK);
-    ret = *value;
-    safe_mutex_handle(mutex, UNLOCK);
-    return (ret);
+	bool	ret;
+
+	safe_mutex_handle(mutex, LOCK);
+	ret = *value;
+	safe_mutex_handle(mutex, UNLOCK);
+	return (ret);
 }
 
-void    set_long(t_mtx *mutex, long *dest, long value)
+void	set_long(t_mtx *mutex, long *dest, long value)
 {
-    safe_mutex_handle(mutex, LOCK);
-    *dest = value;
-    safe_mutex_handle(mutex, UNLOCK);
+	safe_mutex_handle(mutex, LOCK);
+	*dest = value;
+	safe_mutex_handle(mutex, UNLOCK);
 }
 
-long    get_long(t_mtx *mutex, long *value)
+long	get_long(t_mtx *mutex, long *value)
 {
-    long    ret;
-    safe_mutex_handle(mutex, LOCK);
-    ret = *value;
-    safe_mutex_handle(mutex, UNLOCK);
-    return (ret);
+	long	ret;
+
+	safe_mutex_handle(mutex, LOCK);
+	ret = *value;
+	safe_mutex_handle(mutex, UNLOCK);
+	return (ret);
 }
 
-bool    sim_finish(t_table *table)
+bool	sim_finish(t_table *table)
 {
-    return (get_bool(&table->table_mtx, &table->end));
+	return (get_bool(&table->table_mtx, &table->end));
 }
