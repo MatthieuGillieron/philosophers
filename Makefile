@@ -1,5 +1,4 @@
-NAME = philosophers
-
+NAME = philo
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -pthread
 RM = rm -f
