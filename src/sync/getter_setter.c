@@ -1,52 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   synchro.c                                          :+:      :+:    :+:   */
+/*   getter_setter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/15 14:56:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/22 14:19:41 by mg               ###   ########.fr       */
+/*   Created: 2025/04/15 14:00:21 by mg                #+#    #+#             */
+/*   Updated: 2025/04/23 21:04:51 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "../../includes/philosophers.h"
 
-void	wait_thread(t_table *table)
+void	set_bool(t_mtx *mutex, bool *dest, bool value)
 {
-	while (!get_bool(&table->table_mtx, &table->all_thread))
-		;
+	safe_mutex_handle(mutex, LOCK);
+	*dest = value;
+	safe_mutex_handle(mutex, UNLOCK);
 }
 
-bool	all_thread_run(t_mtx *mutex, long *threads, long philo_nbr)
+bool	get_bool(t_mtx *mutex, bool *value)
 {
 	bool	ret;
 
-	ret = false;
 	safe_mutex_handle(mutex, LOCK);
-	if (*threads == philo_nbr)
-		ret = true;
+	ret = *value;
 	safe_mutex_handle(mutex, UNLOCK);
 	return (ret);
 }
 
-void	increase_long(t_mtx *mutex, long *value)
+void	set_long(t_mtx *mutex, long *dest, long value)
 {
 	safe_mutex_handle(mutex, LOCK);
-	(*value)++;
+	*dest = value;
 	safe_mutex_handle(mutex, UNLOCK);
 }
 
-void	desynchro_philo(t_philo *philo)
+long	get_long(t_mtx *mutex, long *value)
 {
-	if (philo->table->philo_nbr % 2 == 0)
-	{
-		if (philo->id % 2 == 0)
-			better_usleep(3e4, philo->table);
-	}
-	else
-	{
-		if (philo->id % 2)
-			thinking(philo, true);
-	}
+	long	ret;
+
+	safe_mutex_handle(mutex, LOCK);
+	ret = *value;
+	safe_mutex_handle(mutex, UNLOCK);
+	return (ret);
+}
+
+bool	sim_finish(t_table *table)
+{
+	return (get_bool(&table->table_mtx, &table->end));
 }

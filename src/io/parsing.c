@@ -6,11 +6,11 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 19:28:39 by mg                #+#    #+#             */
-/*   Updated: 2025/04/22 14:16:57 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/23 21:04:11 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "../../includes/philosophers.h"
 
 static const char	*valid_input(const char *str)
 {

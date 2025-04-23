@@ -6,11 +6,11 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 11:24:28 by mg                #+#    #+#             */
-/*   Updated: 2025/04/22 15:54:03 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/23 21:04:20 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "../../includes/philosophers.h"
 
 void	write_status(t_philo_status status, t_philo *philo)
 {

@@ -6,11 +6,11 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 19:54:18 by mg                #+#    #+#             */
-/*   Updated: 2025/04/22 14:08:46 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/23 21:04:45 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "../../includes/philosophers.h"
 
 static bool	philo_died(t_philo *philo)
 {

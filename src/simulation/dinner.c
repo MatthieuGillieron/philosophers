@@ -6,11 +6,11 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:20:49 by mg                #+#    #+#             */
-/*   Updated: 2025/04/22 11:26:50 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/23 21:04:38 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "../../includes/philosophers.h"
 
 void	thinking(t_philo *philo, bool pre_sim)
 {
