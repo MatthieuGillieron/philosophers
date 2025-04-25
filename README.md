@@ -1,6 +1,6 @@
 # Philosophers – Projet 42
 
-[![English](https://img.shields.io/badge/English-blue.svg)](./READMEen.md)   [![Français](https://img.shields.io/badge/Français-gray.svg)](./README.md)
+[![English](https://img.shields.io/badge/English-gray.svg)](./READMEen.md)   [![Français](https://img.shields.io/badge/Français-blue.svg)](./README.md)
 
 Ce projet explore les problématiques de **synchronisation de threads**, de **mutex**, et de **conditions de concurrence** à travers une implémentation du **problème des philosophes**.
 
