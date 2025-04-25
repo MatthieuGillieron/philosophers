@@ -15,7 +15,7 @@ SRC_UTILS = utils
 
 SRC_CORE_FILES = main.c init.c
 SRC_SIM_FILES = dinner.c monitor.c
-SRC_SYNC_FILES = synchro.c getter_setter.c
+SRC_SYNC_FILES = synchro.c safe_access.c
 SRC_IO_FILES = parsing.c write.c
 SRC_UTILS_FILES = utils.c u_time.c u_mtx_thread.c
 
