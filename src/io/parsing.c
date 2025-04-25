@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/12 19:28:39 by mg                #+#    #+#             */
-/*   Updated: 2025/04/23 21:04:11 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/24 16:31:17 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static long	ft_atol(const char *str)
 
 /*
     input : ./philo 5 800 200 200 [5]
-                    ms   ms  ms
+                 	  ms  ms  ms
                     
        seconde      1s
        miliseconde  1/1000s

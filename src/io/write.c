@@ -6,11 +6,18 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 11:24:28 by mg                #+#    #+#             */
-/*   Updated: 2025/04/23 21:04:20 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/24 16:35:36 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philosophers.h"
+
+/**
+ * @brief Affiche l'état actuel d'un philosophe
+ * message synchro avec un MTX afin d eviter qu ils se melangent !
+ * verif si la sim dois continuer avant d afficher (philo a manger comme balou)
+ * ou sim est fini ! 
+ */
 
 void	write_status(t_philo_status status, t_philo *philo)
 {

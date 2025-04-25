@@ -6,11 +6,18 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 13:20:49 by mg                #+#    #+#             */
-/*   Updated: 2025/04/23 21:04:38 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/24 16:57:51 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philosophers.h"
+
+/**
+ * @brief Gère l'état de réflexion d'un philosophe
+ * calcul le temps de reflexion pour eviter les deadlock (pas que tt les
+ * philo veulent prendre une fourchette en mm temps!)
+ * pour un nbr impair de philo on utilise * 0.42 pour desynchroniser
+ */
 
 void	thinking(t_philo *philo, bool pre_sim)
 {
@@ -44,6 +51,12 @@ void	*lone_philo(void *arg)
 	return (NULL);
 }
 
+/**
+ * @brief Simule l'action de manger pour un philosophe
+ * prise fourchette / mange / check si philo > balou :)
+ * libere fourchette
+ */
+
 static void	eat(t_philo *philo)
 {
 	safe_mutex_handle(&philo->first_fork->fork, LOCK);
@@ -60,6 +73,14 @@ static void	eat(t_philo *philo)
 	safe_mutex_handle(&philo->first_fork->fork, UNLOCK);
 	safe_mutex_handle(&philo->second_fork->fork, UNLOCK);
 }
+
+/**
+ * thread de philosophe 
+ * cycle complet d'un philo
+ * attendre tout les thread ok pour que tout demarre en mm temps
+ * pas qu un philo manger en avance ... par rapport a un autres..
+
+ */
 
 void	*dinner_simu(void *data)
 {
@@ -82,6 +103,16 @@ void	*dinner_simu(void *data)
 	}
 	return (NULL);
 }
+
+/*
+ * 
+ * initialise et lance tous les threads nécessaires à la simulation:
+ * - Un thread par philosophe (ou thread spécial si 1 seul philosophe)
+ * - Un thread moniteur qui vérifie si un philosophe meurt de faim
+ * 
+ * attend ensuite que tous les threads de philos se terminent avant
+ * de terminer la sim. et de rejoindre le thread moniteur
+ */
 
 void	dinner_start(t_table *table)
 {

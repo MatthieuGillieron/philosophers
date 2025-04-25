@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 14:56:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/23 21:04:57 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/24 21:41:04 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,21 @@ bool	all_thread_run(t_mtx *mutex, long *threads, long philo_nbr)
 	return (ret);
 }
 
+/**
+ *  Incrémente valeurs pour compter nbr de thread 
+
+ */
+
 void	increase_long(t_mtx *mutex, long *value)
 {
 	safe_mutex_handle(mutex, LOCK);
 	(*value)++;
 	safe_mutex_handle(mutex, UNLOCK);
 }
+
+/**
+ *  Désynchronise les philosophes pour éviter les deadlocks
+ */
 
 void	desynchro_philo(t_philo *philo)
 {

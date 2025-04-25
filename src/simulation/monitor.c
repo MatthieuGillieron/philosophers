@@ -6,11 +6,15 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 19:54:18 by mg                #+#    #+#             */
-/*   Updated: 2025/04/23 21:04:45 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/24 17:05:40 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/philosophers.h"
+
+/*
+ * check si le temps ecouler depuis son last meal est > temps max. autpriser
+ */
 
 static bool	philo_died(t_philo *philo)
 {
@@ -26,6 +30,12 @@ static bool	philo_died(t_philo *philo)
 		return (true);
 	return (false);
 }
+
+/**
+ *
+ * att. demarage tt les thread / check si philo mort si oui
+ * ->  arette la simu + affche 💀
+ */
 
 void	*monitor_dinner(void *data)
 {

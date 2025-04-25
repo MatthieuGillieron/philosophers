@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 16:04:51 by mg                #+#    #+#             */
-/*   Updated: 2025/04/23 21:05:04 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/25 11:34:16 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 /*
     EINVAL  :	Invalid argument
-	->	Tu as passé un argument invalide à une fonction. Ex: mutex pas init.
+	->	passé un argument invalide à une fonction. Ex: mutex pas init.
 
     EDEADLK :	Deadlock detected
-	->	Tu es en train de créer un deadlock
-	(genre tu relock un mutex que tu tiens déjà)
+	-> en train de créer un deadlock
+	(genre relock un mutex que tu tiens déjà)
 
     EPERM   :	Operation not permitted
-	->	T’essaies de faire une opération pour laquelle
-	tu n’as pas le droit (ex: unlock un mutex que tu n’as pas locké)
+	->	opération pour laquelle pas le droit
+	 (ex: unlock un mutex que tu n’as pas locké)
 
     ENOMEM  :	Not enough memory       
-	->	Plus assez de mémoire pour faire ce que tu veux (ex: créer un mutex).
+	->	Plus assez de mémoire pour faire ce que tu veux
+	(ex: créer un mutex).
 
     EBUSY   :	Resource busy           
 	->	Ressource occupée

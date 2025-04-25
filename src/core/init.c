@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 10:03:45 by mg                #+#    #+#             */
-/*   Updated: 2025/04/23 21:03:58 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/24 21:42:22 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 /*
 
-    Philosophe	  philo_pos	  Right Fork	           Left Fork
-        P0	          0	    forks[0] (F0)	   forks[(0+1)%5] = forks[1] (F1)
-        P1	          1	    forks[1] (F1)	   forks[(1+1)%5] = forks[2] (F2)
-        P2	          2	    forks[2] (F2)	   forks[(2+1)%5] = forks[3] (F3)
-        P3	          3	    forks[3] (F3)	   forks[(3+1)%5] = forks[4] (F4)
-        P4	          4	    forks[4] (F4)	   forks[(4+1)%5] = forks[0] (F0) 
+    Philosophe	 philo_pos	 Right Fork (first)	        Left Fork (second)
+        P0	         0	    forks[0] (F0)	   forks[(0+1)%5] = forks[1] (F1)
+        P1	         1	    forks[1] (F1)	   forks[(1+1)%5] = forks[2] (F2)
+        P2	         2	    forks[2] (F2)	   forks[(2+1)%5] = forks[3] (F3)
+        P3	         3	    forks[3] (F3)	   forks[(3+1)%5] = forks[4] (F4)
+        P4	         4	    forks[4] (F4)	   forks[(4+1)%5] = forks[0] (F0) 
 													✅ cercle fermé
 
+	Pour éviter les deadlocks -> les philos pair commencent par la fork dorite
 */
 
 static void	assign_fork(t_philo *philo, t_fork *forks, int philo_pos)
@@ -55,6 +56,12 @@ static void	philo_init(t_table *table)
 		assign_fork(philo, table->forks, i);
 	}
 }
+
+/**
+ * Alloue et configure les philos, les fourchettes et les mutex
+ * puis lance l’initialisation de chaque philo
+ * @param table La struct princ. qui stockera ttes les données de la sim
+ */
 
 void	data_init(t_table *table)
 {

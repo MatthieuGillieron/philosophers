@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 16:08:28 by mg                #+#    #+#             */
-/*   Updated: 2025/04/22 16:09:04 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/25 11:45:23 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@ long	get_time(t_time_code time_code)
 	return (42);
 }
 
-/*
-    usleep plein de bug, retard pas precis !
-*/
+/**
+ * usleep pas precise pour court delais
+ * tant que le délai n’est pas écoulé : si > 1 ms reste
+ * on dort la moitié du temps pour ne pas bloquer le CPU
+ * sinon on boucle activement pour garantir la précision.
+ */
 
 void	better_usleep(long usec, t_table *table)
 {
