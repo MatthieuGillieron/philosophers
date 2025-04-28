@@ -55,3 +55,10 @@ Cela démarre une simulation avec 5 philosophes, chacun ayant :
 - 200ms pour dormir
 
 Ajoutez un 5ème paramètre (ex: `5`) pour forcer l'arrêt une fois que chaque philosophe a mangé 5 fois.
+
+<br>
+
+## Petites notes ..
+<p align="left">
+<img src="./note.png" alt="Notes  Philosophers" width="400px">
+</p>
