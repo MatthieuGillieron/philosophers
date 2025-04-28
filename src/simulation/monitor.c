@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 19:54:18 by mg                #+#    #+#             */
-/*   Updated: 2025/04/24 17:05:40 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/28 15:03:19 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	philo_died(t_philo *philo)
 	elapsed = get_time(MILLISECOND)
 		- get_long(&philo->philo_mtx, &philo->last_meal);
 	time_2_die = philo->table->time_to_die / 1e3;
-	if (elapsed > time_2_die)
+	if (elapsed >= time_2_die)
 		return (true);
 	return (false);
 }
