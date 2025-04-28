@@ -6,16 +6,16 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:23:08 by mg                #+#    #+#             */
-/*   Updated: 2025/04/22 16:09:00 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/28 15:22:20 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void	exit_error(const char *error)
+int	exit_error(const char *error)
 {
 	printf(RED"%s \n"RST, error);
-	exit(EXIT_FAILURE);
+	return (EXIT_FAILURE);
 }
 
 bool	is_digit(char c)
@@ -29,7 +29,10 @@ void	*safe_malloc(size_t bytes)
 
 	retrn = malloc(bytes);
 	if (!retrn)
+	{
 		exit_error(RED"Error with allocation memory.."RST);
+		return (NULL);
+	}
 	return (retrn);
 }
 

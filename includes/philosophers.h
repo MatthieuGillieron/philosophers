@@ -6,7 +6,7 @@
 /*   By: mg <mg@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 15:22:13 by mg                #+#    #+#             */
-/*   Updated: 2025/04/25 14:08:42 by mg               ###   ########.fr       */
+/*   Updated: 2025/04/28 15:23:04 by mg               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,7 @@ struct s_table
 */
 
 //      *** UTILS ***
-void	exit_error(const char *error);
+int		exit_error(const char *error);
 bool	is_digit(char c);
 void	*safe_malloc(size_t bytes);
 void	safe_thread_handle(pthread_t *thread,
